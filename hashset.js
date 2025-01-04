@@ -25,8 +25,22 @@ export default (function() {
         this.isSubsetOf(otherSet);
     }
 
+    forEach(callback) {
+      this._map.forEach(callback);
+    }
+
     has(item) {
       return this._map.has(item);
+    }
+
+    intersect(otherSet) {
+      let intersection = new HashSet();
+      this.forEach((item) => {
+        if (otherSet.has(item)) {
+          intersection.add(item);
+        }
+      })
+      return intersection;
     }
 
     keys() {
@@ -39,6 +53,13 @@ export default (function() {
 
     remove(key) {
       return this._map.remove(key);
+    }
+
+    union(otherSet) {
+      let combined = new HashSet();
+      this.forEach((item) => combined.add(item));
+      otherSet.forEach((item) => combined.add(item));
+      return combined;
     }
 
     values() {

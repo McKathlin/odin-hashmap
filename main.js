@@ -78,12 +78,23 @@ test.forEach((key, value) => {
 })
 
 // Test Hashset
-let mySet = new HashSet();
-mySet.add('foo');
-mySet.add('bar');
-mySet.add('baz');
-mySet.add('bar');
-console.log(mySet.has('foo'));
-console.log(mySet.has('bin'));
-console.log(mySet.entries());
-console.log(mySet.length());
+let fooSet = new HashSet();
+fooSet.add('foo');
+fooSet.add('bar');
+fooSet.add('baz');
+fooSet.add('foo');
+console.log(fooSet.has('baz'));
+console.log(fooSet.has('bin'));
+console.log(fooSet.entries());
+console.log(fooSet.length());
+
+let barSet = new HashSet();
+barSet.add('vanilla');
+barSet.add('ice');
+barSet.add('cream');
+barSet.add('bar');
+
+let allSet = fooSet.union(barSet);
+console.log(allSet.entries());
+let anySet = fooSet.intersect(barSet);
+console.log(anySet.entries());
