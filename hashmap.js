@@ -59,11 +59,10 @@ export default (function() {
         existingNode.value = value;
         return;
       }
-      // If we're here, this key is new.
 
+      // If we're here, this will be added as a new node.
       // Increase capacity if necessary.
-      this._count++;
-      if (this._count > (this._capacity * LOAD_FACTOR)) {
+      if (this._count + 1 > (this._capacity * LOAD_FACTOR)) {
         this._setCapacity(this._capacity * GROWTH_MULTIPLIER);
       }
 
@@ -74,7 +73,7 @@ export default (function() {
       const newNode = new BucketNode(key, value);
       newNode.next = existingBucket;
       this._buckets[index] = newNode;
-      
+      this._count++;
     }
 
     values() {
@@ -133,6 +132,8 @@ export default (function() {
       this._buckets = new Array(newCapacity);
 
       // Move the contents of the old buckets into the new buckets
+      // Restart count at 0, as setting will add to the count.
+      this._count = 0;
       for (let i = 0; i < oldCapacity; i++) {
         for (
           let oldNode = oldBuckets[i];
