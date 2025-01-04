@@ -15,6 +15,7 @@ export default (function() {
     // Public methods
 
     clear() {
+      this._count = 0;
       this._buckets = new Array(this._capacity);
     }
 
@@ -49,6 +50,9 @@ export default (function() {
       if (this.has(key)) {
         const index = this._hash(key);
         this._buckets[index] = this._buckets[index].remove(key);
+        if (!this._buckets[index]) {
+          delete this._buckets[index];
+        }
         this._count--;
         return true;
       } else {
@@ -116,7 +120,7 @@ export default (function() {
       for (let bucket of this._buckets) {
         for (
           let currentNode = bucket;
-          currentNode != null;
+          !!currentNode && i < this._count;
           currentNode = currentNode.next
         ) {
           results[i] = funcMap(currentNode);
