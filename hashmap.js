@@ -3,10 +3,11 @@ export default (function() {
   const BASE_CHAR_CODE = 'a'.charCodeAt(0);
   const HASH_PRIME = 37;
   const LOAD_FACTOR = 0.75;
+  const DEFAULT_STARTING_CAPACITY = 16;
   const GROWTH_MULTIPLIER = 2;
 
   class HashMap {
-    constructor(capacity = 16) {
+    constructor(capacity = DEFAULT_STARTING_CAPACITY) {
       this._capacity = capacity;
       this._count = 0;
       this._buckets = new Array(capacity);
@@ -23,6 +24,18 @@ export default (function() {
       return this._mapAllNodes((currentNode) =>
         [currentNode.key, currentNode.value]
       );
+    }
+
+    forEach(callback) {
+      for (let bucket of this._buckets) {
+        for (
+          let currentNode = bucket;
+          !!currentNode;
+          currentNode = currentNode.next
+        ) {
+          callback(currentNode.key, currentNode.value);
+        }
+      }
     }
 
     get(key) {

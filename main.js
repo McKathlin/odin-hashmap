@@ -46,10 +46,13 @@ console.log(test.remove('ice cream'));
 // Test length
 console.log(test.length());
 
-// Test keys, values, and entries
+// Test keys, values, entries, forEach
 console.log(test.keys());
 console.log(test.values());
 console.log(test.entries());
+test.forEach((key, value) => {
+  console.log(`The ${key} is ${value}.`);
+})
 
 // Test clear
 test.clear();
@@ -58,7 +61,10 @@ test.set('dragon', 'green');
 test.set('unicorn', 'silver');
 console.log(test.length());
 
-// Test keys, values, and entries
+// Test keys, values, entries, forEach
 console.log(test.keys());
 console.log(test.values());
 console.log(test.entries());
+test.forEach((key, value) => {
+  console.log(`The ${key} is ${value}.`);
+})
