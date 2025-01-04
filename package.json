@@ -1,0 +1,25 @@
+{
+  "name": "odin-hashmap",
+  "version": "1.0.0",
+  "description": "A hash map implementation made as part of The Odin Project curriculum",
+  "keywords": [
+    "hashmap",
+    "data",
+    "structure"
+  ],
+  "homepage": "https://github.com/McKathlin/odin-hashmap#readme",
+  "bugs": {
+    "url": "https://github.com/McKathlin/odin-hashmap/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/McKathlin/odin-hashmap.git"
+  },
+  "license": "ISC",
+  "author": "McKathlin",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
