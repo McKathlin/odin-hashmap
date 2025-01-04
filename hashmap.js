@@ -41,6 +41,10 @@ export default (function() {
       return this._mapAllNodes((currentNode) => currentNode.key);
     }
 
+    length() {
+      return this._count;
+    }
+
     remove(key) {
       if (this.has(key)) {
         const index = this._hash(key);
