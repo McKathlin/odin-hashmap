@@ -21,9 +21,7 @@ export default (function() {
     }
 
     entries() {
-      return this._mapAllNodes((currentNode) =>
-        [currentNode.key, currentNode.value]
-      );
+      return this.map((key, value) => [key, value]);
     }
 
     forEach(callback) {
@@ -52,11 +50,21 @@ export default (function() {
     }
 
     keys() {
-      return this._mapAllNodes((currentNode) => currentNode.key);
+      return this.map((key, value) => key);
     }
 
     length() {
       return this._count;
+    }
+
+    map(funcMap) {
+      let results = new Array(this._count);
+      let i = 0;
+      this.forEach((key, value) => {
+        results[i] = funcMap(key, value);
+        i++;
+      })
+      return results;
     }
 
     remove(key) {
@@ -98,7 +106,7 @@ export default (function() {
     }
 
     values() {
-      return this._mapAllNodes((currentNode) => currentNode.value);
+      return this.map((key, value) => value);
     }
 
     // Private helper methods
@@ -125,22 +133,6 @@ export default (function() {
         throw new Error("Hash code out of bounds!", hashCode);
       }
       return hashCode;
-    }
-
-    _mapAllNodes(funcMap) {
-      let results = new Array(this._count);
-      let i = 0;
-      for (let bucket of this._buckets) {
-        for (
-          let currentNode = bucket;
-          !!currentNode && i < this._count;
-          currentNode = currentNode.next
-        ) {
-          results[i] = funcMap(currentNode);
-          i++;
-        }
-      }
-      return results;
     }
 
     _setCapacity(newCapacity) {

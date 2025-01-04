@@ -50,9 +50,16 @@ console.log(test.length());
 console.log(test.keys());
 console.log(test.values());
 console.log(test.entries());
+let numGreenThings = 0;
 test.forEach((key, value) => {
-  console.log(`The ${key} is ${value}.`);
-})
+  if (value == 'green') {
+    numGreenThings += 1;
+  }
+});
+console.log(`This HashMap has ${numGreenThings} green thing(s).`);
+
+// Test map function
+console.log(test.map((key, value) => `The ${key} is ${value}.`));
 
 // Test clear
 test.clear();
