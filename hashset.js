@@ -43,6 +43,24 @@ export default (function() {
       return intersection;
     }
 
+    isSubsetOf(otherSet) {
+      if (this.length() > otherSet.length()) {
+        return false;
+      }
+
+      let allFound = true;
+      this.forEach((item) => {
+        if (!otherSet.has(item)) {
+          allFound = false;
+        }
+      })
+      return allFound;
+    }
+
+    isSupersetOf(otherSet) {
+      return otherSet.isSubsetOf(this);
+    }
+
     keys() {
       return this.entries();
     }

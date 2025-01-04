@@ -94,7 +94,9 @@ barSet.add('ice');
 barSet.add('cream');
 barSet.add('bar');
 
-let allSet = fooSet.union(barSet);
-console.log(allSet.entries());
-let anySet = fooSet.intersect(barSet);
-console.log(anySet.entries());
+let eitherSet = fooSet.union(barSet);
+console.log(eitherSet.entries());
+let bothSet = fooSet.intersect(barSet);
+console.log(bothSet.entries());
+console.log(fooSet.isSubsetOf(barSet));
+console.log(fooSet.isSubsetOf(eitherSet));
