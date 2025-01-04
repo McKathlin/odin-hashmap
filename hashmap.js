@@ -53,29 +53,28 @@ export default (function() {
     }
 
     set(key, value) {
+      // Handle the case where the key is already present.
+      let existingNode = this._getNodeMatching(key);
+      if (existingNode) {
+        existingNode.value = value;
+        return;
+      }
+      // If we're here, this key is new.
+
       // Increase capacity if necessary.
+      this._count++;
       if (this._count >= (this._capacity * LOAD_FACTOR)) {
         this._setCapacity(this._capacity * GROWTH_MULTIPLIER);
       }
 
       // Find the bucket corresponding to this key.
+      // Add a node for it, and put it on the front.
       const index = this._hash(key);
-      let existingBucket = this._buckets[index];
-      if (existingBucket) {
-        let matchingNode = existingBucket.find(key);
-        if (matchingNode) {
-          // This key is already present. Replace the value.
-          matchingNode.value = value;
-          return;
-        }
-      }
-
-      // If we're here, this key is new.
-      // Add a node for it, and put it on the front of the bucket.
+      const existingBucket = this._buckets[index];
       const newNode = new BucketNode(key, value);
       newNode.next = existingBucket;
       this._buckets[index] = newNode;
-      this._count++;
+      
     }
 
     values() {
