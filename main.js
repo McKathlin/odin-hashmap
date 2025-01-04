@@ -1,4 +1,5 @@
 import HashMap from "./hashmap.js";
+import HashSet from "./hashset.js";
 
 let test = new HashMap();
 
@@ -75,3 +76,14 @@ console.log(test.entries());
 test.forEach((key, value) => {
   console.log(`The ${key} is ${value}.`);
 })
+
+// Test Hashset
+let mySet = new HashSet();
+mySet.add('foo');
+mySet.add('bar');
+mySet.add('baz');
+mySet.add('bar');
+console.log(mySet.has('foo'));
+console.log(mySet.has('bin'));
+console.log(mySet.entries());
+console.log(mySet.length());
