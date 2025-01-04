@@ -2,7 +2,7 @@ export default (function() {
 
   const BASE_CHAR_CODE = 'a'.charCodeAt(0);
   const HASH_PRIME = 37;
-  const LOAD_FACTOR = 0.8;
+  const LOAD_FACTOR = 0.75;
   const GROWTH_MULTIPLIER = 2;
 
   class HashMap {
@@ -63,7 +63,7 @@ export default (function() {
 
       // Increase capacity if necessary.
       this._count++;
-      if (this._count >= (this._capacity * LOAD_FACTOR)) {
+      if (this._count > (this._capacity * LOAD_FACTOR)) {
         this._setCapacity(this._capacity * GROWTH_MULTIPLIER);
       }
 
